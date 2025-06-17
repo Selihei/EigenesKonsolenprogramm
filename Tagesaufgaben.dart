@@ -1,12 +1,17 @@
 import 'dart:io';
 
-List<String> aufgaben= []; //noch einfügen
+
+List<String> aufgaben= ["TaskSheet", "Vorlesung", "Tutorium"]; //noch einfügen
 int eingabe = 0;
+ //DateTime now = DateTime.now();
 bool option = false;
 bool ausgang = false;
 
 void main (){
-print("Welche Aktion soll ausgeführt werden? \n"
+print(
+"--------------------------------------------------------------\n"
+"Welche Aktion soll ausgeführt werden? Schreibe die Zahlen 1-4. \n"
+"--------------------------------------------------------------\n"
 "1 Übersicht \n"
 "2 Aufgaben hinzufügen \n"
 "3 Aufgaben löschen \n"
@@ -25,9 +30,11 @@ while(ausgang ==false)
     else
     
     
-    eingabe = int.parse(input); //Validation
+ 
 
 if(option == false) {
+   eingabe = int.parse(input); //Validation
+
     switch(eingabe) {
     case 1:
     option = true;
@@ -42,6 +49,7 @@ if(option == false) {
     option = true;
     option4();
     default:
+    if(ausgang != true)
     print("Ungültige Eingabe");
     }
 }
@@ -53,7 +61,10 @@ void option1(){
     return;
 
     else{
-    print("Option 1");
+  //  print("Heute" + " der " + "$date");
+    for(int i = 0; i < aufgaben.length; i++){
+        print("$i ${aufgaben[i]}");
+    }
     }
 }
 
@@ -63,6 +74,14 @@ if(ausgang == true)
 
     else{
     print("Option 2");
+    option1();
+    String? input = stdin.readLineSync();
+    if(input == null)
+    print("Ungültige Eingabe");
+    else
+    aufgaben.add(input);
+    option1();
+   // print("$input");
     }
 }
 
