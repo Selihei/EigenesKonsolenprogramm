@@ -80,9 +80,9 @@ void option1() {
 void option2() {
   if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
-    else if (zuruck) {
-      main();}
-      
+
+   
+
   else {
     
 
@@ -109,6 +109,8 @@ void option2() {
         aufgaben.add(input);
        
     }
+     if (zuruck) {
+      main();}
   }
 }
 
@@ -129,7 +131,10 @@ void option3() {
       print("Falsche Eingabe");
     else {
       aufgaben.removeAt(eingabe);
+    //  print("AUfgbae entfernt");
+     // main();
     }
+    
   }
 }
 
