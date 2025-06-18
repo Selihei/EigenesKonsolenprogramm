@@ -15,14 +15,12 @@ print(
 "--------------------------------------------------------------\n"
 "Welche Aktion soll ausgeführt werden? Schreibe die Zahlen 1-4. \n"
 "--------------------------------------------------------------\n "
+"\n "
 "1 Übersicht der Aufgaben \n "
-"........................\n "
 "2 Aufgaben hinzufügen \n " 
-"........................\n "
 "3 Aufgaben löschen \n "
-"........................\n "
-"4 Aufgaben bearbeiten \n "
-"........................"); 
+//"4 Aufgaben bearbeiten \n " Wenn noch Zeit ist
+); 
 
 //Ist immer im Hintergrund für Keyswords und das Menü
 while(ausgang ==false)
@@ -36,7 +34,8 @@ while(ausgang ==false)
     else if(input == "back"){
     zuruck = true;
     option = false;
-    main();}
+   main();
+    }
     else if(input == null)
     input = "0";
     else
@@ -93,7 +92,7 @@ if(ausgang == true) //Blockt den Aufruf bei der Eingabe Exit
 
     else{
         while(zuruck != true){
-    print("Aktuelle Liste:");
+//Aufruf der Übersicht
      option1();
     
    print("Tippe die neue Aufgabe ein");
@@ -102,8 +101,12 @@ if(ausgang == true) //Blockt den Aufruf bei der Eingabe Exit
     if(input == null)
     print("Ungültige Eingabe");
     else if(input == "back"){
-    zuruck = true;
-    option = false;
+   zuruck = true;
+   option = false;
+    break;
+    }
+    else if(input =="exit"){
+    ausgang = true;
     break;
     }
 
