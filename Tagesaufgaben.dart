@@ -80,9 +80,12 @@ void option1() {
 void option2() {
   if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
+    else if (zuruck) {
+      main();}
+      
   else {
-     if (zuruck) main();
-     
+    
+
     while (!zuruck) {
       
 
