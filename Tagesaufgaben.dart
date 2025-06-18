@@ -3,25 +3,34 @@ import 'dart:io';
 
 List<String> aufgaben= ["Vorlesung", "TaskSheet", "Tutorium"]; //noch einfügen
 int eingabe = 0;
- //DateTime now = DateTime.now();
+DateTime now = DateTime.now();
+String date = "${now.day.toString().padLeft(2, '0')}.${now.month.toString().padLeft(2, '0')}.${now.year}";
 bool option = false;
 bool ausgang = false;
 bool zuruck = false;
 
 void main (){
+//Menüausgabe
 print(
 "--------------------------------------------------------------\n"
 "Welche Aktion soll ausgeführt werden? Schreibe die Zahlen 1-4. \n"
-"--------------------------------------------------------------\n"
-"1 Übersicht \n"
-"2 Aufgaben hinzufügen \n"
-"3 Aufgaben löschen \n"
-"4 Aufgaben bearbeiten");
+"--------------------------------------------------------------\n "
+"1 Übersicht der Aufgaben \n "
+"........................\n "
+"2 Aufgaben hinzufügen \n " 
+"........................\n "
+"3 Aufgaben löschen \n "
+"........................\n "
+"4 Aufgaben bearbeiten \n "
+"........................"); 
 
+//Ist immer im Hintergrund für Keyswords und das Menü
 while(ausgang ==false)
 {
     zuruck = false;
     String? input = stdin.readLineSync();
+
+    //Abfrage nach bestimmten Keyswords
     if(input == "exit")
     ausgang = true;
     else if(input == "back"){
@@ -33,11 +42,13 @@ while(ausgang ==false)
     else
     
     
- 
-
+ //Überprüft wegen Text
 if(option == false) {
-   eingabe = int.parse(input); //Validation fehlt noch
+   if (int.tryParse(input) != null) 
+    eingabe = int.parse(input);
 
+
+//Auswahl der Aktionen
     switch(eingabe) {
     case 1:
     option = true;
@@ -59,14 +70,19 @@ if(option == false) {
 }
 }
 
+//Aufgabenübersicht
 void option1(){
     if(ausgang == true) //Blockt den Aufruf bei der Eingabe Exit
     return;
 
     else{
-  //  print("Heute" + " der " + "$date");
+
+//Datumsangabe
+print("Heute der " + "$date");
+print("---Aktuelle Aufgabenliste---");
+//Aufreihung der Inhalte
     for(int i = 0; i < aufgaben.length; i++){
-        print("$i ${aufgaben[i]}");
+        print("${i + 1} ${aufgaben[i]}");
     }
     }
 }
