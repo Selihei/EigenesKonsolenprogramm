@@ -23,7 +23,7 @@ void main() {
   );
 
   //Ist immer im Hintergrund für Keyswords und das Menü
-  while (ausgang == false) {
+  while (!ausgang) {
     zuruck = false;
     String? input = stdin.readLineSync();
 
@@ -38,7 +38,7 @@ void main() {
       input = "0";
     else
     //Überprüft wegen Text
-    if (option == false) {
+    if (!option) {
       if (int.tryParse(input) != null) eingabe = int.parse(input);
 
       //Auswahl der Aktionen
@@ -56,7 +56,7 @@ void main() {
           option = true;
           option4();
         default:
-          if (ausgang != true) print("Ungültige Eingabe");
+          if (!ausgang) print("Ungültige Eingabe");
       }
     }
   }
@@ -64,7 +64,7 @@ void main() {
 
 //Aufgabenübersicht
 void option1() {
-  if (ausgang == true) //Blockt den Aufruf bei der Eingabe Exit
+  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
   else {
     //Datumsangabe
@@ -81,8 +81,11 @@ void option2() {
   if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
   else {
+     if (zuruck) main();
+     
     while (!zuruck) {
-      if (zuruck) main();
+      
+
       //Aufruf der Übersicht
       option1();
 
@@ -98,24 +101,24 @@ void option2() {
       } else if (input == "exit") {
         ausgang = true;
         break;
-      } else
+      } 
+      else
         aufgaben.add(input);
+       
     }
   }
 }
 
 void option3() {
-  if (ausgang == true) //Blockt den Aufruf bei der Eingabe Exit
+  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
   else {
     print("Option 3");
-    for (int i = 0; i < aufgaben.length; i++) {
-      print("$i ${aufgaben[i]}");
-    }
+    option1();
     print("Welche Aufgabe soll gelöscht werden?");
-    String? input = stdin.readLineSync() ?? "0";
+    String? input = stdin.readLineSync();
 
-    if (input == null) input = "0";
+    if (input == null) input = "0"; //noch verändern
 
     eingabe = int.parse(input); //Validation
 
@@ -128,7 +131,7 @@ void option3() {
 }
 
 void option4() {
-  if (ausgang == true) //Blockt den Aufruf bei der Eingabe Exit
+  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
   else {
     print("Option 4");
