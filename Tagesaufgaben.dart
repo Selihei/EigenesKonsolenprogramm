@@ -68,7 +68,10 @@ void option1() {
   //Blockt den Aufruf bei der Eingabe Exit
   if (ausgang)
     return;
-  else {
+  else if (aufgaben.isEmpty) {
+    print("Aufgabenliste ist leer");
+    main();
+  } else {
     //Datumsangabe
     print("Heute der " + "$date");
     print("---Aktuelle Aufgabenliste---");
@@ -88,7 +91,11 @@ void option2() {
     //Ermöglicht mehrere Einträge
     while (!zuruck) {
       //Aufruf der Übersicht
-      option1();
+      if (aufgaben.isEmpty)
+        print("Aufgabenliste ist leer");
+      else
+        option1();
+
       print("Tippe die neue Aufgabe ein");
       String? input = stdin.readLineSync();
 
@@ -122,6 +129,7 @@ void option3() {
       if (aufgaben.isEmpty) {
         print("Aufgabenliste ist leer");
         zuruck = true;
+        option = false;
         break;
       }
       option1();
@@ -139,17 +147,13 @@ void option3() {
         ausgang = true;
         break;
       } else if (int.tryParse(input) != null)
-        eingabe = int.parse(input);
-      //  if (input == null) input = "0"; //noch verändern
-
-      //eingabe = int.parse(input); //Validation
+        eingabe = int.parse(input) - 1;
 
       if (eingabe < 0 || eingabe > aufgaben.length)
         print("Falsche Eingabe");
       else {
         aufgaben.removeAt(eingabe);
-        //  print("AUfgbae entfernt");
-        // main();
+        print("Aufgabe $eingabe entfernt");
       }
     }
     //Kehrt zum Menu zuruck
