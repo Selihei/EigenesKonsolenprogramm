@@ -1,6 +1,6 @@
 import 'dart:io';
 
-List<String> aufgaben = ["Vorlesung", "TaskSheet", "Tutorium"]; //noch einfügen
+List<String> aufgaben = ["Vorlesung", "TaskSheet", "Tutorium"];
 int eingabe = 0;
 DateTime now = DateTime.now();
 String date =
@@ -52,9 +52,10 @@ void main() {
         case 3:
           option = true;
           option3();
-        case 4:
+        /*  case 4:
           option = true;
           option4();
+          */
         default:
           if (!ausgang) print("Ungültige Eingabe");
       }
@@ -62,9 +63,10 @@ void main() {
   }
 }
 
-//Aufgabenübersicht
+//Aufgabenübersicht Aktion
 void option1() {
-  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
+  //Blockt den Aufruf bei der Eingabe Exit
+  if (ausgang)
     return;
   else {
     //Datumsangabe
@@ -77,24 +79,20 @@ void option1() {
   }
 }
 
+//Hinzufügen neuer Aufgaben Aktion
 void option2() {
-  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
+  //Blockt den Aufruf bei der Eingabe Exit
+  if (ausgang)
     return;
-
-   
-
   else {
-    
-
+    //Ermöglicht mehrere Einträge
     while (!zuruck) {
-      
-
       //Aufruf der Übersicht
       option1();
-
       print("Tippe die neue Aufgabe ein");
-
       String? input = stdin.readLineSync();
+
+      //Überprüft nach Eingabe nach Keywords
       if (input == null)
         print("Ungültige Eingabe");
       else if (input == "back") {
@@ -104,44 +102,68 @@ void option2() {
       } else if (input == "exit") {
         ausgang = true;
         break;
-      } 
-      else
+      } else
+        //Fügt Eingabe der Liste hinzu
         aufgaben.add(input);
-       
     }
-     if (zuruck) {
-      main();}
+    if (zuruck) {
+      main();
+    }
   }
 }
 
 void option3() {
-  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
+  //Blockt den Aufruf bei der Eingabe Exit
+  if (ausgang)
     return;
   else {
-    print("Option 3");
-    option1();
-    print("Welche Aufgabe soll gelöscht werden?");
-    String? input = stdin.readLineSync();
+    //Ermöglicht mehrere Löschungen hintereinander
+    while (!zuruck) {
+      if (aufgaben.isEmpty) {
+        print("Aufgabenliste ist leer");
+        zuruck = true;
+        break;
+      }
+      option1();
+      print("Welche Aufgabe soll gelöscht werden?");
+      String? input = stdin.readLineSync();
 
-    if (input == null) input = "0"; //noch verändern
+      //Überprüft nach Eingabe nach Keywords
+      if (input == null)
+        print("Ungültige Eingabe");
+      else if (input == "back") {
+        zuruck = true;
+        option = false;
+        break;
+      } else if (input == "exit") {
+        ausgang = true;
+        break;
+      } else if (int.tryParse(input) != null)
+        eingabe = int.parse(input);
+      //  if (input == null) input = "0"; //noch verändern
 
-    eingabe = int.parse(input); //Validation
+      //eingabe = int.parse(input); //Validation
 
-    if (eingabe < 0 || eingabe > aufgaben.length)
-      print("Falsche Eingabe");
-    else {
-      aufgaben.removeAt(eingabe);
-    //  print("AUfgbae entfernt");
-     // main();
+      if (eingabe < 0 || eingabe > aufgaben.length)
+        print("Falsche Eingabe");
+      else {
+        aufgaben.removeAt(eingabe);
+        //  print("AUfgbae entfernt");
+        // main();
+      }
     }
-    
+    //Kehrt zum Menu zuruck
+    if (zuruck) {
+      main();
+    }
   }
 }
 
-void option4() {
+/*void option4() {
   if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
     return;
   else {
     print("Option 4");
   }
 }
+*/
