@@ -19,7 +19,6 @@ void main() {
     "1 Übersicht der Aufgaben \n "
     "2 Aufgaben hinzufügen \n "
     "3 Aufgaben löschen \n ",
-    //"4 Aufgaben bearbeiten \n " Wenn noch Zeit ist
   );
 
   //Ist immer im Hintergrund für Keyswords und das Menü
@@ -73,7 +72,7 @@ void option1() {
     main();
   } else {
     //Datumsangabe
-    print("Heute der " + "$date");
+    print("\n Heute der " + "$date");
     print("---Aktuelle Aufgabenliste---");
     //Aufreihung der Inhalte
     for (int i = 0; i < aufgaben.length; i++) {
@@ -149,11 +148,14 @@ void option3() {
       } else if (int.tryParse(input) != null)
         eingabe = int.parse(input) - 1;
 
-      if (eingabe < 0 || eingabe > aufgaben.length)
+      if (eingabe < 0 || eingabe >= aufgaben.length)
         print("Falsche Eingabe");
       else {
         aufgaben.removeAt(eingabe);
-        print("Aufgabe $eingabe entfernt");
+        print(
+          "\n"
+          "Aufgabe $eingabe entfernt",
+        );
       }
     }
     //Kehrt zum Menu zuruck
@@ -162,12 +164,3 @@ void option3() {
     }
   }
 }
-
-/*void option4() {
-  if (ausgang) //Blockt den Aufruf bei der Eingabe Exit
-    return;
-  else {
-    print("Option 4");
-  }
-}
-*/
